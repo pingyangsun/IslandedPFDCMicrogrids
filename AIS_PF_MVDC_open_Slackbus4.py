@@ -3,12 +3,11 @@
 
 """
 
-from ctypes.wintypes import PINT
-import matplotlib.pyplot as plt
 import numpy as np
+import cmath
 import time
-import pandas as pd
-
+# import matplotlib.pyplot as plt
+# import pandas as pd
 handel_calls = 0
 time_start = time.time()
 
@@ -300,7 +299,7 @@ def handel(delt):
     max(abs(x) for x in dIV)
 )
     V=V*VB
-    print(V)
+    # print(V)
 
     Ga =np.zeros((6,6))
     for k in range(Line.shape[0]):
@@ -325,7 +324,7 @@ def handel(delt):
 
     P=np.hstack((P_B1,P_B2,P_B3,P_B4,P_B5,P_B6))
 
-    print(P)
+    # print(P)
     # offset_real=target - ( (V1ref-V[0])*K_d[0]+(P1ref-P[0]) )
     offset=abs(target-( (V1ref-V[0])*K_d[0]+(P1ref-P[0]) ))
     # plt_x.append(delt)
@@ -337,8 +336,8 @@ def handel(delt):
     # log_data['offset'].append(float(offset)) 
 
 
-    print(f"delt: {delt}")
-    print(f"offset: {offset}")
+    # print(f"delt: {delt}")
+    # print(f"offset: {offset}")
 
 
     flag=0
@@ -348,7 +347,7 @@ def handel(delt):
         # print("init power on Bus2: "+str(Vslack))
         #I2=P[1]/V[1]
         flag=1
-        print(f"F = {offset}")
+        # print(f"F = {offset}")
     return offset,flag
 
 def find_Peak():
@@ -405,9 +404,9 @@ def find_Peak():
             handel_calls_in_iteration += 1  # Increment the counter
             vertex_calls += 1  # Increment vertex_calls counter
             if vertex_flag == 1:
-                print(f"Iteration {count + 1}: handel was called {handel_calls_in_iteration} times, "
-                      f"with {mid_calls} call(s) to handel(mid_index) and "
-                      f"{vertex_calls} call(s) to handel(vertex_index).")
+                # print(f"Iteration {count + 1}: handel was called {handel_calls_in_iteration} times, "
+                #       f"with {mid_calls} call(s) to handel(mid_index) and "
+                #       f"{vertex_calls} call(s) to handel(vertex_index).")
                 return vertex_x, count + 1
 
         # Search range adjustment based on the results of interpolation
@@ -424,9 +423,9 @@ def find_Peak():
         # df = pd.DataFrame(log_data)
         # df.to_excel('BLI_results_slackbus4.xlsx', index=False)
 
-        print(f"Iteration {count}: handel was called {handel_calls_in_iteration} times, "
-              f"with {mid_calls} call(s) to handel(mid_index) and "
-              f"{vertex_calls} call(s) to handel(vertex_index).")
+        # print(f"Iteration {count}: handel was called {handel_calls_in_iteration} times, "
+        #       f"with {mid_calls} call(s) to handel(mid_index) and "
+        #       f"{vertex_calls} call(s) to handel(vertex_index).")
 
     # if reach to the maximum
     if count >= max_iterations:
@@ -442,3 +441,4 @@ print(f"'handel' function was called {handel_calls} times.")
 
 print(f"Time taken: {time_sum:.6f} seconds")
 # print(f"Results have been saved to 'BLI_results_slackbus4.xlsx'")
+
